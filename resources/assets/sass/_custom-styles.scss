@@ -1,0 +1,162 @@
+.app-body {
+	padding-top: 60px;
+	background-color: #EAEFF3;
+	color: #222533;
+}
+
+.page-heading {
+	background-color: #fff;
+	color: #595f7f;
+	padding:20px 0 8px 0;
+	border-bottom:1px solid #e8e8e8;
+}
+.page-heading-title {
+	font-size:18px;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+}
+
+.wide-chart {
+	background-color: #101423;
+	color: #b3bbd8;
+	margin:0 auto;
+	height:330px;
+}
+
+.content-wrapper {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding:20px;
+	background-color: #fff;
+	margin-bottom:8px;
+	border:1px solid #e8e8e8;
+}
+
+.content-top-wrapper {
+	-webkit-border-radius: 0px;
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius: 0px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-radius: 0px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	padding:20px;
+	background-color: #fff;
+	margin-top:-25px;
+	margin-bottom:8px;
+	border:1px solid #e8e8e8;
+}
+
+.content-top-wrapper .label {
+	font-size:0.43em;
+	margin-bottom:15px;
+	margin-left: 10px;
+}
+
+.center {
+	text-align: center;
+}
+
+.txt-lg {
+	font-size:1.85em;
+}
+
+.analytics-cell {
+	text-align: center;
+}
+.analytics-cell h1, h2, h3, h4 {
+	font-weight: bolder;
+}
+.analytics-cell small {
+	color: #888;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+h5.side-title {
+	text-transform: uppercase;
+	margin-bottom:20px;
+	padding-bottom: 5px;
+	border-bottom: 1px dashed #e7e7e7;
+}
+h5>i {
+	margin-right:6px;
+}
+
+.form-buttons {
+	margin-top:45px;
+	text-align: right;
+}
+
+.btn-cancel {
+	margin-left: 8px;
+}
+
+.sub-title {
+	color: #595F7F;
+}
+
+.lt-highlight {
+	background-color: #f2f9ff;
+	padding:8px;
+}
+
+.mt-10 {
+	margin-top: 10px;
+}
+.mt-25 {
+	margin-top: 25px;
+}
+.mb-5 {
+	margin-bottom: 5px;
+}
+.mb-10 {
+	margin-bottom: 10px;
+}
+.mb-25 {
+	margin-bottom: 25px;
+}
+.mt-25 {
+	margin-top: 25px;
+}
+.mr-10 {
+	margin-right: 10px;
+}
+.mr-25 {
+	margin-right: 25px;
+}
+.ml-10 {
+	margin-left: 10px;
+}
+.ml-25 {
+	margin-left: 25px;
+}
+
+/* Bootstrap Overrides */
+.navbar-inverse {
+	background-color: #222533;
+	height:55px;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+    color: #c5c9dd;
+}
+
+.footer {
+	margin-top: 20px;
+	font-size:0.88em;
+	color:#858585;
+}

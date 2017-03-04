@@ -1,3 +1,5 @@
+
+# Directories
 /node_modules
 /public/storage
 /public/hot
@@ -6,4 +8,13 @@
 /.idea
 Homestead.json
 Homestead.yaml
+
+# Files
+*.DS_Store
 .env
+Homestead.json
+Homestead.yaml
+npm-debug.log
+Vagrantfile
+_ide_helper.php
+

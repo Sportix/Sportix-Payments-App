@@ -14,8 +14,8 @@ class CreateAccountUsersPivotTable extends Migration
     public function up()
     {
         Schema::create('account_users', function (Blueprint $table) {
-            $table->integer('account_id')->index();
-            $table->integer('user_id')->index();
+            $table->integer('account_id')->unsigned()->index();
+            $table->integer('user_id')->unsigned()->index();
             $table->string('role', 25)->nullable();
         });
     }
@@ -27,6 +27,6 @@ class CreateAccountUsersPivotTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('account_users');
     }
 }

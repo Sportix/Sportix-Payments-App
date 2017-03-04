@@ -40,10 +40,11 @@ $factory->define(App\Account::class, function (Faker\Generator $faker) {
 $factory->define(App\Product::class, function (Faker\Generator $faker) {
     return [
         'account_id' =>  1,
+        'created_by' => 1,
         'product_name' =>  $faker->randomElement([
             'Team Fees', 'Tournament Registration', 'Pub Fundraiser'
         ]),
-        'product_amount' => $faker->numberBetween(1000, 99999),
+        'payment_amount' => $faker->numberBetween(1000, 99999),
         'payment_description' => $faker->randomElement([
            'Fee', 'Registration', 'Random Something'
         ]),

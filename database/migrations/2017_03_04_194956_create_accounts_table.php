@@ -16,7 +16,7 @@ class CreateAccountsTable extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('active')->default(true)->index();
-            $table->integer('owner_id')->default(0)->index();
+            $table->integer('owner_id')->unsigned()->index();
             $table->string('name');
             $table->text('photo_url')->nullable();
             $table->string('stripe_id')->nullable();
@@ -33,6 +33,12 @@ class CreateAccountsTable extends Migration
             $table->text('extra_billing_information')->nullable();
             $table->timestampsTz();
             $table->softDeletes();
+        });
+
+        Schema::table('accounts', function($table) {
+            $table->foreign('owner_id')
+                  ->references('id')->on('users')
+                  ->onDelete('cascade');
         });
     }
 

@@ -23,6 +23,15 @@
         }
     },
     "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php",
+            "tests/support/CreatesAccounts.php",
+            "tests/support/data-fixtures.php",
+            "tests/support/DatabaseSetup.php"
+        ],
+        "files": [
+            "app/Support/helpers.php"
+        ],
         "psr-4": {
             "Tests\\": "tests/"
         }

@@ -1,19 +1,37 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
+//Crypt::decrypt();
+//apc_clear_cache();
+//dd(DB::getQueryLog());
+//dd(new DateTime());
+//dd(App::environment());
+//dd(gethostname());
+//Log::error('test');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// -------------------------------------------
+// Marketing (Public) Routes
+// -------------------------------------------
+Route::get('/', function () { return view('welcome'); });
 
-Route::get('/dashboard', function () {
-    return view('app.dashboard');
-});
+// -------------------------------------------
+// Account Visible Routes
+// -------------------------------------------
+Auth::routes();
 
-Route::get('/products/create', function () {
-    return view('app.products.create');
-});
+
+Route::get('/dashboard', function () { return view('app.dashboard'); });
+
+Route::resource('products', 'ProductsController');
+
+Route::get('/home', 'HomeController@index');
+
+// -------------------------------------------
+// Public Payment Routes
+// -------------------------------------------
+
+Route::get('/p/{id}', 'Payments\FundsController@show');
+Route::post('/products/{id}/orders', 'Payments\ProductOrdersController@store');
+
+// -------------------------------------------
+// Admin Internal Routes
+// -------------------------------------------

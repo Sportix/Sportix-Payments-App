@@ -15,8 +15,8 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            // $table->unsignedInteger('account_id')->index();
-            $table->unsignedInteger('product_id')->index();
+            // $table->unsignedInteger('account_id')->unsigned()->index();
+            $table->unsignedInteger('product_id')->unsigned()->index();
             $table->string('product_type')->default('FUND');
             $table->string('email', 100)->index();
             $table->integer('total_amount')->default(0);
@@ -25,6 +25,16 @@ class CreateOrdersTable extends Migration
             $table->boolean('charge_app_fee')->default(false);
             $table->timestampsTz();
             $table->softDeletes();
+        });
+
+        Schema::table('orders', function($table) {
+            // $table->foreign('account_id')
+            //       ->references('id')->on('accounts')
+            //       ->onDelete('cascade');
+            //       
+            $table->foreign('product_id')
+                  ->references('id')->on('products')
+                  ->onDelete('cascade');
         });
     }
 

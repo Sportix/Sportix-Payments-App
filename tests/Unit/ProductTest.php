@@ -20,10 +20,10 @@ class ProductTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_product_amount_in_dollars()
+    public function it_can_get_payment_amount_in_dollars()
     {
         $product = factory(Product::class)->make([
-            'product_amount' => 2088
+            'payment_amount' => 2088
         ]);
 
         $this->assertEquals('$20.88', $product->total_due);
@@ -57,7 +57,7 @@ class ProductTest extends TestCase
         // A fund where we are charging the customer
         $product_1 = factory(Product::class)->states('published')->create([
             'due_date' => Carbon::parse('+1 week'),
-            'product_amount' => 2500,
+            'payment_amount' => 2500,
             'charge_app_fee' => true,
             'app_fee_percent' => 10
         ]);
@@ -65,7 +65,7 @@ class ProductTest extends TestCase
         // A fund where we are NOT charging the customer
         $product_2 = factory(Product::class)->states('published')->create([
             'due_date' => Carbon::parse('+1 week'),
-            'product_amount' => 2500,
+            'payment_amount' => 2500,
             'charge_app_fee' => false
         ]);
 
@@ -85,7 +85,7 @@ class ProductTest extends TestCase
     public function it_can_make_a_payment()
     {
         $product = factory(Product::class)->states('published')->create([
-            'product_amount' => 2500, 'due_date' => Carbon::parse('+1 week'), 'charge_app_fee' => false
+            'payment_amount' => 2500, 'due_date' => Carbon::parse('+1 week'), 'charge_app_fee' => false
         ]);
 
         $order = $product->makePayment('brad@me.com');
@@ -99,7 +99,7 @@ class ProductTest extends TestCase
     /** @test */
     public function trying_to_make_a_payment_after_due_date_throws_an_exception()
     {
-        $this->disableExceptionHandling();
+        //$this->disableExceptionHandling();
         $product = factory(Product::class)->states('published')->create([
             'due_date' => Carbon::parse('-1 week')
         ]);

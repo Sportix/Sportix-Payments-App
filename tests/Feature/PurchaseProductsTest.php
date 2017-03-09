@@ -19,7 +19,7 @@ class PurchaseProductsTest extends TestCase
 
     private function makeAPayment($product, $params)
     {
-        $this->json('POST', "/products/{$product->id}/orders", $params);
+        $this->response = $this->json('POST', "/products/{$product->id}/orders", $params);
     }
 
     private function assertValidationError($field)
@@ -31,10 +31,10 @@ class PurchaseProductsTest extends TestCase
     /** @test */
     public function a_user_can_make_a_payment_on_a_published_product()
     {
-        $this->disableExceptionHandling();
+        //$this->disableExceptionHandling();
         // Create a new product with a specific fee
         $product = factory(Product::class)->states('openlive')->create([
-            'product_amount' => 2000, 'charge_app_fee' => true, 'app_fee_percent' => 2
+            'payment_amount' => 2000, 'charge_app_fee' => true, 'app_fee_percent' => 2
         ]);
 
         // JSON API Request from the UI
@@ -128,14 +128,14 @@ class PurchaseProductsTest extends TestCase
     /** @test */
     public function verify_a_user_cannot_make_a_payment_after_due_date()
     {
-        $this->disableExceptionHandling();
+        //$this->disableExceptionHandling();
         $product = factory(Product::class)->states('published')->create([
             'due_date' => Carbon::parse('-1 week')
         ]);
 
         $this->makeAPayment($product, [
             'email' => 'brad@me.com',
-            'total_amount' => $product->fee_amount,
+            'total_amount' => $product->payment_amount,
             'payment_token' => $this->paymentGateway->getValidTestToken()
         ]);
 

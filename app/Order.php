@@ -42,7 +42,7 @@ class Order extends Model
             'id' => $this->id,
             'email' => $this->email,
             'total_amount' => $this->total_amount,
-            'fee_amount' => $this->fee_amount,
+            'payment_amount' => $this->payment_amount,
             'app_fee_percent' => $this->app_fee_percent,
             'charge_app_fee' => $this->charge_app_fee,
             'created_at' => $this->created_at->format('Y-m-d')

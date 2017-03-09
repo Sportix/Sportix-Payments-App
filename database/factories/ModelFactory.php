@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
@@ -85,7 +87,7 @@ $factory->define(App\Order::class, function (Faker\Generator $faker) {
         'product_type' =>  'FUND',
         'email' =>  $faker->email,
         'total_amount' => 0,
-        'fee_amount' => 0,
+        'payment_amount' => 0,
         'app_fee_percent' => 0,
         'charge_app_fee' => true,
     ];

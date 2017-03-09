@@ -21,6 +21,21 @@ abstract class TestCase extends BaseTestCase
         $this->setupDatabase();
     }
 
+    protected function assertResponseStatus($status)
+    {
+        $this->response->assertStatus($status);
+    }
+
+    protected function seeJsonSubset($data)
+    {
+        $this->response->assertJson($data);
+    }
+
+    protected function decodeResponseJson()
+    {
+        return $this->response->decodeResponseJson();
+    }
+
     // protected function disableExceptionHandling()
     // {
     //     $this->app->instance(ExceptionHandler::class, new class extends Handler {

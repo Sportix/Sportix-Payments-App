@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('product_type')->default('FUND');
             $table->string('email', 100)->index();
             $table->integer('total_amount')->default(0);
-            $table->integer('fee_amount')->default(0);
+            $table->integer('payment_amount')->default(0);
             $table->integer('app_fee_percent')->default(0);
             $table->boolean('charge_app_fee')->default(false);
             $table->timestampsTz();
@@ -31,7 +31,7 @@ class CreateOrdersTable extends Migration
             // $table->foreign('account_id')
             //       ->references('id')->on('accounts')
             //       ->onDelete('cascade');
-            //       
+            //
             $table->foreign('product_id')
                   ->references('id')->on('products')
                   ->onDelete('cascade');

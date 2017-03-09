@@ -13,7 +13,7 @@ class ProductsController extends Controller
     {
         $product = Product::published()->findOrFail($id);
 
-        return view('payments.index', ['product' => $product]);
+        return view('payments.show', ['product' => $product]);
     }
 
 }

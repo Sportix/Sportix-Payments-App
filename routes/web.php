@@ -29,7 +29,7 @@ Route::get('/home', 'HomeController@index');
 // Public Payment Routes
 // -------------------------------------------
 
-Route::get('/p/{id}', 'Payments\FundsController@show');
+Route::get('/p/{id}', 'Payments\ProductsController@show');
 Route::post('/products/{id}/orders', 'Payments\ProductOrdersController@store');
 
 // -------------------------------------------

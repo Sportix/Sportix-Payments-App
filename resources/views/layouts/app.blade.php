@@ -9,6 +9,7 @@
 
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link href="/css/app.css" rel="stylesheet">
+        @include('scripts.app')
 
     	{{-- custom scripts --}}
     	@yield('scripts', '')
@@ -21,7 +22,7 @@
 
         {{-- Main Content --}}
         @yield('content')
-		
+
         {{-- App Footer --}}
         @include('partials.app_footer')
 

@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/payments.css" rel="stylesheet">
+    @include('scripts.app')
 
     <!-- Scripts -->
     @yield('scripts', '')
@@ -18,7 +19,7 @@
 </head>
 <body class="payment-body">
 
-<div class="container">
+<div class="container" id="app">
     <div class="row">
         <div class="col-sm-6 col-md-8 col-md-offset-2">
 
@@ -35,6 +36,8 @@
 </div><!--/container-->
 
 <!-- JavaScript -->
+@stack('beforeScripts')
 <script src="/js/app.js"></script>
+@stack('afterScripts')
 </body>
 </html>

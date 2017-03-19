@@ -1,26 +1,14 @@
 <template>
     <div>
-        <div class="row middle-xs">
-            <div class="col col-xs-6">
-                <div class="form-group m-xs-b-4">
-                    <label class="form-label">
-                        Price
-                    </label>
-                    <span class="form-control-static">
-                        ${{ priceInDollars }}
-                    </span>
-                </div>
+        <div class="row mt-20">
+            <div class="col-md-4 col-md-offset-4">
+                <button class="btn btn-primary btn-block"
+                        @click="openStripe"
+                        :class="{ 'btn-loading': processing }"
+                        :disabled="processing">Pay Now</button>
             </div>
         </div>
-        <div class="text-right">
-            <button class="btn btn-primary btn-block"
-                    @click="openStripe"
-                    :class="{ 'btn-loading': processing }"
-                    :disabled="processing"
-            >
-                Pay Now
-            </button>
-        </div>
+
     </div>
 </template>
 
@@ -28,7 +16,7 @@
     export default {
         props: [
             'price',
-            'productTitle',
+            'productName',
             'productId',
         ],
         data() {
@@ -40,7 +28,7 @@
         },
         computed: {
             description() {
-                return `Payment for ${this.productTitle}`
+                return `Payment for ${this.productName}`
             },
             totalPrice() {
                 return this.price
@@ -71,14 +59,13 @@
                     panelLabel: 'Pay {{amount}}',
                     amount: this.totalPrice,
                     image: '/img/checkout-icon.png',
-                    token: this.purchaseTickets,
+                    token: this.makePayment,
                 })
             },
-            purchaseTickets(token) {
+            makePayment(token) {
                 this.processing = true
-                axios.post(`/concerts/${this.concertId}/orders`, {
+                axios.post(`/products/${this.productId}/orders`, {
                     email: token.email,
-                    ticket_quantity: this.quantity,
                     payment_token: token.id,
                 }).then(response => {
                     console.log("Charge succeeded")

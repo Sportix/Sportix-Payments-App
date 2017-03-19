@@ -11182,25 +11182,12 @@ module.exports = g;
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 __webpack_require__(31);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component('example', __webpack_require__(34));
+Vue.component('StripeCheckout', __webpack_require__(34));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app'
 });
 
 /***/ }),
@@ -12070,12 +12057,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = {
-    mounted: function mounted() {
-        console.log('Component mounted.');
+    props: ['price', 'productName', 'productId'],
+    data: function data() {
+        return {
+            quantity: 1,
+            stripeHandler: null,
+            processing: false
+        };
+    },
+
+    computed: {
+        description: function description() {
+            return 'Payment for ' + this.productName;
+        },
+        totalPrice: function totalPrice() {
+            return this.price;
+        },
+        priceInDollars: function priceInDollars() {
+            return (this.price / 100).toFixed(2);
+        },
+        totalPriceInDollars: function totalPriceInDollars() {
+            return (this.totalPrice / 100).toFixed(2);
+        }
+    },
+    methods: {
+        initStripe: function initStripe() {
+            var handler = StripeCheckout.configure({
+                key: App.stripePublicKey
+            });
+            window.addEventListener('popstate', function () {
+                handler.close();
+            });
+            return handler;
+        },
+        openStripe: function openStripe(callback) {
+            this.stripeHandler.open({
+                name: 'Sportix',
+                description: this.description,
+                currency: "usd",
+                allowRememberMe: false,
+                panelLabel: 'Pay {{amount}}',
+                amount: this.totalPrice,
+                image: '/img/checkout-icon.png',
+                token: this.makePayment
+            });
+        },
+        makePayment: function makePayment(token) {
+            var _this = this;
+
+            this.processing = true;
+            axios.post('/products/' + this.productId + '/orders', {
+                email: token.email,
+                payment_token: token.id
+            }).then(function (response) {
+                console.log("Charge succeeded");
+            }).catch(function (response) {
+                _this.processing = false;
+            });
+        }
+    },
+    created: function created() {
+        this.stripeHandler = this.initStripe();
     }
 };
 
@@ -12113,7 +12157,7 @@ window.Vue = __webpack_require__(37);
 window.axios = __webpack_require__(12);
 
 window.axios.defaults.headers.common = {
-  'X-CSRF-TOKEN': window.Laravel.csrfToken,
+  'X-CSRF-TOKEN': window.csrfToken,
   'X-Requested-With': 'XMLHttpRequest'
 };
 
@@ -31620,9 +31664,9 @@ var Component = __webpack_require__(35)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/brad/Dropbox/Code/Sportix/Sportix-Payments/resources/assets/js/components/Example.vue"
+Component.options.__file = "/Users/brad/Dropbox/Code/Sportix/Sportix-Payments/resources/assets/js/components/StripeCheckout.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] StripeCheckout.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -31631,9 +31675,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9467c5e2", Component.options)
+    hotAPI.createRecord("data-v-648401c4", Component.options)
   } else {
-    hotAPI.reload("data-v-9467c5e2", Component.options)
+    hotAPI.reload("data-v-648401c4", Component.options)
   }
 })()}
 
@@ -31698,27 +31742,28 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "container"
+  return _c('div', [_c('div', {
+    staticClass: "row mt-20"
   }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-md-8 col-md-offset-2"
-  }, [_c('div', {
-    staticClass: "panel panel-default"
-  }, [_c('div', {
-    staticClass: "panel-heading"
-  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [_vm._v("\n                    I'm an example component!\n                ")])])])])])
-}]}
+    staticClass: "col-md-4 col-md-offset-4"
+  }, [_c('button', {
+    staticClass: "btn btn-primary btn-block",
+    class: {
+      'btn-loading': _vm.processing
+    },
+    attrs: {
+      "disabled": _vm.processing
+    },
+    on: {
+      "click": _vm.openStripe
+    }
+  }, [_vm._v("Pay Now")])])])])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-9467c5e2", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-648401c4", module.exports)
   }
 }
 

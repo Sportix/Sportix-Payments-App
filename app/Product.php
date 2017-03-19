@@ -120,7 +120,7 @@ class Product extends Model
             'product_id' => $this->id,
             'product_type' => 'FUND',
             'total_amount' => $this->getTotalAmount(),
-            'payment_amount' => $this->payment_amount,
+            'fee_amount' => $this->payment_amount,
             'app_fee_percent' => $this->app_fee_percent,
             'charge_app_fee' => $this->charge_app_fee
         ]);
@@ -144,7 +144,7 @@ class Product extends Model
     protected function getTotalAmount()
     {
         $amount = $this->payment_amount;
-        
+
         if($this->chargeCustomerAppFee()) {
             $amount = $this->payment_amount + ($this->payment_amount * $this->app_fee_percent) / 100;
         }

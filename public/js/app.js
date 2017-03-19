@@ -12157,7 +12157,7 @@ window.Vue = __webpack_require__(37);
 window.axios = __webpack_require__(12);
 
 window.axios.defaults.headers.common = {
-  'X-CSRF-TOKEN': window.csrfToken,
+  'X-CSRF-TOKEN': window.Laravel.csrfToken,
   'X-Requested-With': 'XMLHttpRequest'
 };
 

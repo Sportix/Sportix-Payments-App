@@ -3,14 +3,15 @@
 @section('content')
 
     <div class="container-wall">
-        <h5 class="text-center">{{ $product->total_due }}</h5>
-        <h6 class="text-center">{{ $product->formatted_due_date }}</h6>
+        <h2 class="text-center mt-10">{{ $product->total_due }}</h2>
+        <h4 class="text-center mt-10">Due: {{ $product->formatted_due_date }}</h4>
 
         <div>
-            {{ $product->product_description }}
+            {{ $product->payment_description }}
         </div>
 
-        <button class="mt-10 btn btn-lg btn-primary btn-block" type="submit">PAY NOW</button>
+        <stripe-checkout
+            :price="">{{ $product->payment_amount }}</stripe-checkout>
 
     </div><!--/container-wall-->
 

@@ -29,7 +29,10 @@ class ProductOrdersController extends Controller
 
         try {
             $order = $product->makePayment(request('email'));
+
             $this->paymentGateway->charge($order->total_amount, request('payment_token'));
+            //$order->updateFromStripe($charge);
+
             return response()->json($order, 201);
         } catch(PaymentFailedException $e) {
             $order->cancel();

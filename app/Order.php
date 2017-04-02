@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Billing\Charge;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -31,6 +32,7 @@ class Order extends Model
         $this->delete();
     }
 
+
     /**
      * Overwrite the array conversion
      *
@@ -50,8 +52,9 @@ class Order extends Model
         ];
     }
 
-    public function updateFromStripe($charge)
+    public function updateFromStripe(Charge $charge)
     {
-
+        $this->card_last_four = $charge->cardLastFour();
+        $this->save();
     }
 }

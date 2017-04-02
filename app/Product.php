@@ -120,7 +120,7 @@ class Product extends Model
             'product_id' => $this->id,
             'product_type' => 'FUND',
             'total_amount' => $this->getTotalAmount(),
-            'fee_amount' => $this->payment_amount,
+            'payment_amount' => $this->payment_amount,
             'app_fee_percent' => $this->app_fee_percent,
             'charge_app_fee' => $this->charge_app_fee
         ]);

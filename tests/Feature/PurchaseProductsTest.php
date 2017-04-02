@@ -2,11 +2,13 @@
 
 namespace Tests\Feature;
 
+use Mockery;
 use Tests\TestCase;
 use App\Product;
 use Carbon\Carbon;
 use App\Billing\PaymentGateway;
 use App\Billing\FakePaymentGateway;
+use App\OrderTransactionNumberGenerator;
 
 class PurchaseProductsTest extends TestCase
 {
@@ -37,6 +39,11 @@ class PurchaseProductsTest extends TestCase
             'payment_amount' => 2000, 'charge_app_fee' => true, 'app_fee_percent' => 2
         ]);
 
+        $orderTransactionNumberGenerator = Mockery::mock(OrderTransactionNumberGenerator::class, [
+            'generate' => 'TRANSACTIONID1234',
+        ]);
+        $this->app->instance(OrderTransactionNumberGenerator::class, $orderTransactionNumberGenerator);
+
         // JSON API Request from the UI
         $this->makeAPayment($product, [
             'email' => 'brad@me.com',
@@ -47,6 +54,7 @@ class PurchaseProductsTest extends TestCase
         $this->assertResponseStatus(201);
 
         $this->seeJsonSubset([
+            'transaction_id' => 'TRANSACTIONID1234',
             'email' => 'brad@me.com',
             'total_amount' => 2040
         ]);

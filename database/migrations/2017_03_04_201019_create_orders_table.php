@@ -16,6 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             // $table->unsignedInteger('account_id')->unsigned()->index();
+            $table->string('transaction_id', 64)->nullable();
             $table->unsignedInteger('product_id')->unsigned()->index();
             $table->string('product_type')->default('FUND');
             $table->string('email', 100)->index();

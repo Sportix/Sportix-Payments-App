@@ -2,10 +2,10 @@
 
 namespace Tests;
 
-use Tests\Support\DatabaseSetup;
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use App\Exceptions\Handler;
+use Tests\Support\DatabaseSetup;
 use Illuminate\Contracts\Debug\ExceptionHandler;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -13,7 +13,6 @@ abstract class TestCase extends BaseTestCase
     use CreatesApplication;
 
     protected $baseUrl = 'http://sportix-payments.dev';
-
 
     protected function setUp()
     {
@@ -36,16 +35,16 @@ abstract class TestCase extends BaseTestCase
         return $this->response->decodeResponseJson();
     }
 
-    // protected function disableExceptionHandling()
-    // {
-    //     $this->app->instance(ExceptionHandler::class, new class extends Handler {
-    //         public function __construct() {}
-    //         public function report(Exception $e) {}
-    //         public function render($request, Exception $e) {
-    //             throw $e;
-    //         }
-    //     });
-    // }
+     protected function disableExceptionHandling()
+     {
+         $this->app->instance(ExceptionHandler::class, new class extends Handler {
+             public function __construct() {}
+             public function report(Exception $e) {}
+             public function render($request, Exception $e) {
+                 throw $e;
+             }
+         });
+     }
 
     // FORM HTML: <input name="order_numbers[]">
     // allows: $this->visit('/orders')

@@ -85,6 +85,7 @@ $factory->define(App\Order::class, function (Faker\Generator $faker) {
     return [
         'product_id' =>  1,
         'product_type' =>  'FUND',
+        'transaction_id' => $faker->swiftBicNumber,
         'email' =>  $faker->email,
         'total_amount' => 0,
         'payment_amount' => 0,

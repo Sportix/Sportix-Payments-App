@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use App\Facades\OrderTransactionNumber;
 use Illuminate\Database\Eloquent\Model;
 use App\Exceptions\PastDueDateException;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -118,6 +119,7 @@ class Product extends Model
         return $this->orders()->create([
             'email' => $email,
             'product_id' => $this->id,
+            'transaction_id' => OrderTransactionNumber::generate(),
             'product_type' => 'FUND',
             'total_amount' => $this->getTotalAmount(),
             'payment_amount' => $this->payment_amount,

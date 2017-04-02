@@ -6,6 +6,8 @@ use App\Billing\PaymentGateway;
 use App\Billing\StripePaymentGateway;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use App\RandomOrderTransactionNumberGenerator;
+use App\OrderTransactionNumberGenerator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,5 +34,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->bind(PaymentGateway::class, StripePaymentGateway::class);
+        $this->app->bind(OrderTransactionNumberGenerator::class, RandomOrderTransactionNumberGenerator::class);
+
     }
 }

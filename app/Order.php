@@ -41,6 +41,7 @@ class Order extends Model
         return [
             'id' => $this->id,
             'email' => $this->email,
+            'transaction_id' => $this->transaction_id,
             'total_amount' => $this->total_amount,
             'payment_amount' => $this->payment_amount,
             'app_fee_percent' => $this->app_fee_percent,

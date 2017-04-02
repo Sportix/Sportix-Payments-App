@@ -1,10 +1,10 @@
 <?php
 namespace Tests\Unit;
 
-use Tests\TestCase;
-use App\Product;
 use App\Order;
+use App\Product;
 use Carbon\Carbon;
+use Tests\TestCase;
 
 class OrderTest extends TestCase
 {
@@ -19,6 +19,7 @@ class OrderTest extends TestCase
         $this->assertEquals([
             'id' => $order->id,
             'email' => $order->email,
+            'transaction_id' => $order->transaction_id,
             'total_amount' => $order->total_amount,
             'payment_amount' => $order->payment_amount,
             'app_fee_percent' => $order->app_fee_percent,

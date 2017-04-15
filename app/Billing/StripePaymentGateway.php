@@ -63,11 +63,9 @@ class StripePaymentGateway implements PaymentGateway
 
     private function lastCharge()
     {
-        // Checks for 'whiping out' all data kind of check
-        return \Stripe\Charge::all(
-            ['limit' => 1],
-            ['api_key' => $this->apiKey]
-        )['data'][0];
+        return array_first(\Stripe\Charge::all([
+            'limit' => 1
+        ], ['api_key' => $this->apiKey])['data']);
     }
 
     public function newChargesSince($charge = null)

@@ -23,10 +23,6 @@
     <div class="row">
         <div class="col-sm-6 col-md-8 col-md-offset-2">
 
-            <div class="product-masthead">
-                <h1 class="text-center product-title">{{ $product->product_name }}</h1>
-            </div>
-
             <!-- Main Content -->
             @yield('content')
 

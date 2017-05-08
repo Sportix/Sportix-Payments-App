@@ -1,5 +1,9 @@
 <?php
 
+Route::get('/mockups/orders', function() {
+   return view('orders.show');
+});
+
 //Crypt::decrypt();
 //apc_clear_cache();
 //dd(DB::getQueryLog());

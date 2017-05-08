@@ -1,26 +1,26 @@
-<?php
-
-namespace App;
-
-
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class Account extends Model
+// Place your settings in this file to overwrite the default settings
 {
-    use SoftDeletes;
+    "editor.fontSize": 12,
 
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = ['deleted_at'];
+    "editor.fontFamily": "'Operator Mono', Menlo, Monaco, 'Courier New', monospace",
 
-    /**
-     * The guarded attributes on the model.
-     *
-     * @var array
+    "editor.renderWhitespace": "none",
+
+    "editor.lineHeight": 26,
+
+    "editor.formatOnType": true,
+
+    "editor.formatOnPaste": true,
+
+    "editor.cursorBlinking": "phase",
+
+    "editor.renderIndentGuides": true,
+
+    "terminal.external.osxExec": "iTerm.app",
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "One Dark",
+    "workbench.iconTheme": "vs-seti"
+}    * @var array
      */
     protected $guarded = [];
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Admin;
 
 use Auth;
 use App\User;
@@ -43,8 +43,18 @@ class CustomerLoginTest extends TestCase
             'password' => 'invalid_password'
         ]);
 
-        //$response->assertRedirect('/login');
-        //$response->assertSessionHasErrors('');
+        $response->assertSessionHasErrors('email');
+        $this->assertTrue(session()->hasOldInput('email'));
+
+        $this->assertFalse(Auth::check());
+    }
+
+    /** @test */
+    public function a_user_can_logout()
+    {
+        Auth::login(factory(User::class)->create());
+
+        $response = $this->post('/logout');
 
         $this->assertFalse(Auth::check());
     }

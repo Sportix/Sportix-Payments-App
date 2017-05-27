@@ -20,8 +20,8 @@
                             @endif
                         </div>
 
-                        <input type="text" class="form-control" placeholder="Email" required autofocus>
-                        <input type="password" class="form-control" placeholder="Password" required>
+                        <input type="text" name="email" class="form-control" placeholder="Email" required autofocus>
+                        <input type="password" name="password" class="form-control" placeholder="Password" required>
 
                         <button class="mt-25 mb-25 btn btn-lg btn-primary btn-block" type="submit">
                             Sign in</button>

@@ -17,17 +17,17 @@ Route::get('/mockups/orders', function() {
 // -------------------------------------------
 Route::get('/', function () { return view('welcome'); });
 
+Auth::routes();
+
 // -------------------------------------------
 // Account/Admin Visible Routes
 // -------------------------------------------
-Auth::routes();
 
 
 Route::get('/admin/dashboard', function () { return view('app.dashboard'); });
 
-Route::resource('products', 'ProductsController');
-
-Route::get('/home', 'HomeController@index');
+//Route::resource('products', 'ProductsController');
+//Route::get('/home', 'HomeController@index');
 
 // -------------------------------------------
 // Public Payment Routes

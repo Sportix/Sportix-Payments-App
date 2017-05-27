@@ -19,17 +19,6 @@ class PurchaseProductsTest extends TestCase
         $this->app->instance(PaymentGateway::class, $this->paymentGateway);
     }
 
-    private function makeAPayment($product, $params)
-    {
-        $this->response = $this->json('POST', "/products/{$product->id}/orders", $params);
-    }
-
-    private function assertValidationError($field)
-    {
-        $this->assertResponseStatus(422);
-        $this->assertArrayHasKey($field, $this->decodeResponseJson());
-    }
-
     /** @test */
     public function a_user_can_make_a_payment_on_a_published_product()
     {
@@ -180,6 +169,17 @@ class PurchaseProductsTest extends TestCase
                     ->where('email', 'brad@me.com')
                     ->where('product_type', 'FUND')->first();
         $this->assertNull($order);
+    }
+
+    private function makeAPayment($product, $params)
+    {
+        $this->response = $this->json('POST', "/products/{$product->id}/orders", $params);
+    }
+
+    private function assertValidationError($field)
+    {
+        $this->assertResponseStatus(422);
+        $this->assertArrayHasKey($field, $this->decodeResponseJson());
     }
 
 }

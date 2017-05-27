@@ -18,12 +18,12 @@ Route::get('/mockups/orders', function() {
 Route::get('/', function () { return view('welcome'); });
 
 // -------------------------------------------
-// Account Visible Routes
+// Account/Admin Visible Routes
 // -------------------------------------------
 Auth::routes();
 
 
-Route::get('/dashboard', function () { return view('app.dashboard'); });
+Route::get('/admin/dashboard', function () { return view('app.dashboard'); });
 
 Route::resource('products', 'ProductsController');
 

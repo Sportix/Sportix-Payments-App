@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Exception;
 use App\Exceptions\Handler;
 use Tests\Support\DatabaseSetup;
 use Illuminate\Contracts\Debug\ExceptionHandler;

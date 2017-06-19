@@ -17,17 +17,24 @@ Route::get('/mockups/orders', function() {
 // -------------------------------------------
 Route::get('/', function () { return view('welcome'); });
 
+
+// -------------------------------------------
+// Authentication Routes
+// -------------------------------------------
 Auth::routes();
+
 
 // -------------------------------------------
 // Account/Admin Visible Routes
 // -------------------------------------------
 
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function() {
 
-Route::get('/admin/dashboard', function () { return view('app.dashboard'); });
+    Route::get('dashboard', 'DashboardController@index');
+    Route::resource('payments', 'ProductsController');
 
-//Route::resource('products', 'ProductsController');
-//Route::get('/home', 'HomeController@index');
+});
+
 
 // -------------------------------------------
 // Public Payment Routes
@@ -35,7 +42,3 @@ Route::get('/admin/dashboard', function () { return view('app.dashboard'); });
 
 Route::get('/p/{id}', 'Payments\ProductsController@show');
 Route::post('/products/{id}/orders', 'Payments\ProductOrdersController@store');
-
-// -------------------------------------------
-// Admin Internal Routes
-// -------------------------------------------

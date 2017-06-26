@@ -32,6 +32,15 @@ class Order extends Model
         $this->delete();
     }
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 
     /**
      * Overwrite the array conversion

@@ -2,6 +2,22 @@
 
 use Carbon\Carbon;
 
+
+/**
+ * Convert a Carbon date object to a String for the API.
+ * This will keep all the dates universal when converting
+ *
+ * @param Carbon $date
+ * @return string
+ */
+function convertDateForApi(Carbon $date)
+{
+    //return $date->toRfc2822String(); // Thu, 25 Dec 1975 14:15:16 -0500
+    //return $date->timestamp;  // EPOC
+    return $date->toDateTimeString(); // 2012-09-05 23:26:11
+    //echo $date->toAtomString();   // 1975-12-25T14:15:16-05:00
+}
+
 /**
  * Get a carbon instance from a date or time, or now if null.
  *

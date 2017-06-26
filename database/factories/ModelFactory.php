@@ -84,6 +84,7 @@ $factory->state(App\Product::class, 'unpublished', function ($faker) {
 $factory->define(App\Order::class, function (Faker\Generator $faker) {
     return [
         'product_id' =>  1,
+        'account_id' => 1,
         'product_type' =>  'FUND',
         'transaction_id' => $faker->swiftBicNumber,
         'email' =>  $faker->email,

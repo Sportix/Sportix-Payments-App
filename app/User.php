@@ -38,6 +38,6 @@ class User extends Authenticatable
 
     public function account()
     {
-        return $this->belongsTo(App\Account::class);
+        return $this->belongsTo(Account::class, 'current_account_id');
     }
 }

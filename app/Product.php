@@ -119,6 +119,7 @@ class Product extends Model
         return $this->orders()->create([
             'email' => $email,
             'product_id' => $this->id,
+            'account_id' => $this->account_id,
             'transaction_id' => OrderTransactionNumber::generate(),
             'product_type' => 'FUND',
             'total_amount' => $this->getTotalAmount(),

@@ -1,26 +1,40 @@
-// Place your settings in this file to overwrite the default settings
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Account extends Model
 {
-    "editor.fontSize": 12,
+    use SoftDeletes;
 
-    "editor.fontFamily": "'Operator Mono', Menlo, Monaco, 'Courier New', monospace",
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
-    "editor.renderWhitespace": "none",
-
-    "editor.lineHeight": 26,
-
-    "editor.formatOnType": true,
-
-    "editor.formatOnPaste": true,
-
-    "editor.cursorBlinking": "phase",
-
-    "editor.renderIndentGuides": true,
-
-    "terminal.external.osxExec": "iTerm.app",
-    "window.zoomLevel": 0,
-    "workbench.colorTheme": "One Dark",
-    "workbench.iconTheme": "vs-seti"
-}    * @var array
+    /**
+     * The guarded attributes on the model.
+     *
+     * @var array
      */
     protected $guarded = [];
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

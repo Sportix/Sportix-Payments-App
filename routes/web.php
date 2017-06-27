@@ -42,3 +42,4 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 
 Route::get('/p/{id}', 'Payments\ProductsController@show');
 Route::post('/products/{id}/orders', 'Payments\ProductOrdersController@store');
+Route::get('/orders/{transationId}', 'Payments\OrdersController@show');

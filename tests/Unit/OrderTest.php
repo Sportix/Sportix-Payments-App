@@ -3,6 +3,7 @@ namespace Tests\Unit;
 
 use App\Order;
 use App\Product;
+use App\Account;
 use Carbon\Carbon;
 use Tests\TestCase;
 
@@ -37,6 +38,16 @@ class OrderTest extends TestCase
         $order->cancel();
 
         $this->assertNull(Order::find($order->id)); // Note: already have it in memory. Get it again
+    }
+
+    /** @test */
+    public function it_can_retrieve_an_order_by_transaction_id()
+    {
+        $order = factory(Order::class)->create(['transaction_id' => 'OrderTrans123']);
+
+        $responseOrder = Order::findByTransactionId('OrderTrans123');
+
+        $this->assertEquals($order->id, $responseOrder->id);
     }
 
     /** @test */

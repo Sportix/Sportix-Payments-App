@@ -11,7 +11,7 @@ class OrdersController extends Controller
 {
     public function show($transactionId)
     {
-        $order = Order::with('product')->where('transaction_id', $transactionId)->first();
+        $order = Order::findByTransactionId($transactionId);
 
         return view('orders.show', ['order' => $order]);
     }

@@ -66,4 +66,9 @@ class Order extends Model
         $this->card_last_four = $charge->cardLastFour();
         $this->save();
     }
+
+    public static function findByTransactionId($tid)
+    {
+        return self::with(['product', 'account'])->where('transaction_id', $tid)->first();
+    }
 }
